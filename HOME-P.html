@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title id="pageTitle">منزل سالم الغويري</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root{
+--bg:#0b0f19;
+--card:#111827;
+--gold:#eab308;
+--text:#e5e7eb;
+--muted:#9ca3af;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif}
+body{background:var(--bg);color:var(--text);overflow:hidden}
+
+/* loader */
+#loader{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:5000}
+#loader .logo{width:90px;height:90px;border-radius:20px;background:#020617;color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:50px;font-weight:bold;animation:spin 2s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* progress */
+#progress{position:fixed;top:0;left:0;height:4px;width:0%;background:linear-gradient(90deg,#fde047,#eab308);z-index:3000}
+
+/* navbar */
+nav{
+position:fixed;
+top:20px;
+left:50%;
+transform:translateX(-50%);
+background:#020617ee;
+padding:10px 24px;
+display:flex;
+gap:16px;
+border-radius:40px;
+z-index:2000
+}
+nav a{
+color:var(--text);
+text-decoration:none;
+padding:6px 14px;
+border-radius:20px;
+font-size:15px;
+cursor:pointer;
+transition:.3s
+}
+nav a.active{
+background:rgba(234,179,8,.2);
+color:var(--gold)
+}
+
+/* lang */
+#langBtn{
+position:fixed;
+top:20px;
+right:20px;
+background:var(--gold);
+color:#000;
+padding:6px 12px;
+border:none;
+border-radius:20px;
+font-weight:bold;
+z-index:2001
+}
+
+/* hamburger */
+#menuBtn{
+display:none;
+position:fixed;
+top:20px;
+left:20px;
+font-size:22px;
+color:var(--gold);
+z-index:2002;
+cursor:pointer
+}
+
+/* mobile menu */
+#mobileMenu{
+display:none;
+position:fixed;
+top:0;
+right:0;
+width:70%;
+height:100%;
+background:#020617;
+padding:80px 20px;
+z-index:2500
+}
+#mobileMenu a{
+display:block;
+color:var(--text);
+padding:15px;
+font-size:18px;
+border-bottom:1px solid #1f2933;
+text-decoration:none
+}
+
+/* sections */
+section{
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+position:relative
+}
+
+/* home */
+#home{
+background-size:cover;
+background-position:center;
+animation:slider 15s infinite
+}
+@keyframes slider{
+0%{background-image:url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85')}
+50%{background-image:url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267')}
+100%{background-image:url('https://images.unsplash.com/photo-1507089947368-19c1da9775ae')}
+}
+#home::after{
+content:"";
+position:absolute;
+inset:0;
+background:rgba(0,0,0,.7)
+}
+.content{
+position:relative;
+z-index:2;
+text-align:center
+}
+h1{font-size:38px}
+p{font-size:18px;color:var(--muted)}
+
+/* card */
+.card{
+background:var(--card);
+width:90%;
+max-width:760px;
+padding:35px;
+border-radius:22px;
+text-align:center
+}
+
+/* arrows */
+.arrow{
+position:absolute;
+left:50%;
+transform:translateX(-50%);
+font-size:28px;
+color:var(--gold);
+cursor:pointer;
+animation:bounce 2s infinite;
+z-index:10
+}
+.arrow.down{bottom:20px}
+.arrow.up{top:20px}
+@keyframes bounce{50%{transform:translate(-50%,10px)}}
+
+/* iframe */
+.full-iframe{
+width:100%;
+height:100%;
+border:0
+}
+
+/* icons */
+.icons{
+display:flex;
+justify-content:center;
+gap:30px;
+margin-top:20px
+}
+.icons a{
+width:65px;
+height:65px;
+border-radius:50%;
+background:rgba(234,179,8,.15);
+display:flex;
+align-items:center;
+justify-content:center;
+color:var(--gold);
+font-size:28px;
+text-decoration:none
+}
+
+/* mobile */
+@media(max-width:768px){
+nav{display:none}
+#menuBtn{display:block}
+h1{font-size:26px}
+.card{padding:25px}
+}
+</style>
+</head>
+
+<body>
+
+<div id="loader"><div class="logo">S</div></div>
+<div id="progress"></div>
+<button id="langBtn">EN</button>
+<i class="fas fa-bars" id="menuBtn"></i>
+
+<nav>
+<a onclick="goTo(0)" id="navHome"></a>
+<a onclick="goTo(1)" id="navContact"></a>
+<a onclick="goTo(2)" id="navNet"></a>
+<a onclick="goTo(3)" id="navLocation"></a>
+<a onclick="goTo(4)" id="navFollow"></a>
+</nav>
+
+<div id="mobileMenu">
+<a onclick="goTo(0)" id="mHome"></a>
+<a onclick="goTo(1)" id="mContact"></a>
+<a onclick="goTo(2)" id="mNet"></a>
+<a onclick="goTo(3)" id="mLocation"></a>
+<a onclick="goTo(4)" id="mFollow"></a>
+</div>
+
+<section id="home">
+<div class="content">
+<h1 id="homeTitle"></h1>
+<p id="homeDesc"></p>
+</div>
+<div class="arrow down" onclick="goTo(1)"><i class="fas fa-chevron-down"></i></div>
+</section>
+
+<section>
+<div class="arrow up" onclick="goTo(0)"><i class="fas fa-chevron-up"></i></div>
+<iframe class="full-iframe" id="iframeContact"></iframe>
+<div class="arrow down" onclick="goTo(2)"><i class="fas fa-chevron-down"></i></div>
+</section>
+
+<section>
+<div class="arrow up" onclick="goTo(1)"><i class="fas fa-chevron-up"></i></div>
+<iframe class="full-iframe" id="iframeNet"></iframe>
+<div class="arrow down" onclick="goTo(3)"><i class="fas fa-chevron-down"></i></div>
+</section>
+
+<section>
+<div class="arrow up" onclick="goTo(2)"><i class="fas fa-chevron-up"></i></div>
+<div class="card">
+<h1 id="locationTitle"></h1>
+<iframe src="https://www.google.com/maps?q=32.0990145,36.0926659&z=17&output=embed" width="100%" height="300"></iframe>
+</div>
+<div class="arrow down" onclick="goTo(4)"><i class="fas fa-chevron-down"></i></div>
+</section>
+
+<section>
+<div class="arrow up" onclick="goTo(3)"><i class="fas fa-chevron-up"></i></div>
+<div class="card">
+<h1 id="followTitle"></h1>
+<div class="icons">
+<a href="https://www.instagram.com/a7md__08/" target="_blank"><i class="fab fa-instagram"></i></a>
+<a href="https://web.facebook.com/salem.gw.5" target="_blank"><i class="fab fa-facebook-f"></i></a>
+</div>
+<p style="margin-top:25px;font-size:14px;color:#9ca3af">
+© 2025 جميع الحقوق محفوظة | منزل سالم الغويري
+</p>
+</div>
+</section>
+
+<script>
+const sections = document.querySelectorAll("section");
+const navLinks = [navHome,navContact,navNet,navLocation,navFollow];
+const progress = document.getElementById("progress");
+const menuBtn = document.getElementById("menuBtn");
+const mobileMenu = document.getElementById("mobileMenu");
+const step = 100 / sections.length;
+
+menuBtn.onclick = () =>
+mobileMenu.style.display =
+mobileMenu.style.display === "block" ? "none" : "block";
+
+function goTo(i){
+mobileMenu.style.display="none";
+sections[i].scrollIntoView({behavior:"smooth"});
+}
+
+const observer = new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+const index=[...sections].indexOf(entry.target);
+navLinks.forEach(l=>l.classList.remove("active"));
+navLinks[index].classList.add("active");
+progress.style.width=step*(index+1)+"%";
+}
+});
+},{threshold:0.6});
+
+sections.forEach(s=>observer.observe(s));
+
+const data={
+ar:{
+title:"منزل سالم الغويري",
+home:"مرحباً بكم في منزل سالم الغويري",
+desc:"عرض تقديمي احترافي بخدمة إنترنت مميزة",
+follow:"تابعنا",
+location:"موقعنا",
+nav:["الرئيسية","راسلنا","شبكة النت","موقعنا","تابعنا"]
+},
+en:{
+title:"Salem Al-Ghawiri House",
+home:"Welcome to Salem Al-Ghawiri House",
+desc:"Professional presentation with excellent internet service",
+follow:"Follow Us",
+location:"Our Location",
+nav:["Home","Contact","Internet","Location","Follow"]
+}
+};
+
+let lang=localStorage.getItem("lang")||"ar";
+setLang(lang);
+
+langBtn.onclick=()=>{
+lang=lang==="ar"?"en":"ar";
+localStorage.setItem("lang",lang);
+setLang(lang);
+};
+
+function setLang(l){
+document.documentElement.lang=l;
+document.documentElement.dir=l==="ar"?"rtl":"ltr";
+pageTitle.textContent=data[l].title;
+homeTitle.textContent=data[l].home;
+homeDesc.textContent=data[l].desc;
+followTitle.textContent=data[l].follow;
+locationTitle.textContent=data[l].location;
+langBtn.textContent=l==="ar"?"EN":"AR";
+
+navLinks.forEach((el,i)=>el.textContent=data[l].nav[i]);
+[mHome,mContact,mNet,mLocation,mFollow].forEach((el,i)=>el.textContent=data[l].nav[i]);
+
+iframeContact.src="https://www.joacademy.com/user/courses";
+iframeNet.src="https://www.joacademy.com/user/courses";
+}
+
+setTimeout(()=>loader.style.display="none",2500);
+</script>
+
+</body>
+</html>
